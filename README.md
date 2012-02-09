@@ -17,11 +17,15 @@ against, of course.)
 
 ## Usage
 
-    :dev-dependencies [[org.timmc/lein-otf "1.0.0"]]
-
-    $ lein deps, uberjar-otf
-
 Compatible with projects using Clojure 1.3.
+
+* Specify the plugin as a development dependency:
+  `:dev-dependencies [[org.timmc/lein-otf "1.0.0"]]`
+* Take :gen-class out of your main namespace, but leave project.clj's :main
+  pointing to it.
+* Get the plugin and use it!
+  `$ lein uberjar-otf`
+
 (TODO: Replacement for clojure.main -m for 1.2)
 
 ## Changelog
