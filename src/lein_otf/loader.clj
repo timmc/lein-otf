@@ -18,6 +18,7 @@ class path if you use .getResourceAsStream."
 (defn- get-real
   "Get the real namespace from a custom attribute on the jar manifest."
   []
+  {:post [(string? %)]}
   (let [manifest (get-manifest)]
     (-> manifest
         ^Attributes (.getMainAttributes)
@@ -26,4 +27,7 @@ class path if you use .getResourceAsStream."
 (defn -main
   "Loader entrance point; just relays the call on to the real -main."
   [& args]
-  (apply clojure.main/main "-m" (get-real) args))
+  (let [real-ns (get-real)]
+    ;; clojure.main does not have the -m option in Clojure 1.2, so this is
+    ;; taken directly from the 1.3 clojure.main
+    (apply (ns-resolve (doto (symbol real-ns) (require)) '-main) args)))

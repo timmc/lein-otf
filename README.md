@@ -17,16 +17,14 @@ against, of course.)
 
 ## Usage
 
-Compatible with projects using Clojure 1.3.
+Compatible with projects using Clojure 1.2.x and 1.3.0.
 
 1. Specify the plugin as a development dependency:
-   `:dev-dependencies [[org.timmc/lein-otf "1.0.0"]]`
+   `:dev-dependencies [[org.timmc/lein-otf "1.1.0"]]`
 2. Take :gen-class out of your main namespace, but leave project.clj's :main
-   pointing to it.
+   pointing to it. **NB**: Assumes main function is called `-main`.
 3. Get the plugin and use it!
    `$ lein uberjar-otf`
-
-(TODO: Replacement for clojure.main -m for 1.2)
 
 ## Changelog
 
@@ -37,9 +35,15 @@ after release and had a bad name anyhow.
 
 * Provides `lein uberjar-otf` command. Works on Clojure v1.3.0.
 
+### v1.1.0
+
+* Extends support back to projects using Clojure v1.2.0.
+
 ## License
 
 Copyright (C) 2012 Tim McCormack
+
+Contains material from `org.clojure/clojure` project v1.3.0.
 
 Distributed under the Eclipse Public License v1.0, the same as Clojure.
 License text is provided in `./epl-v1.0.txt`.
