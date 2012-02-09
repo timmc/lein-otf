@@ -41,4 +41,5 @@ after release and had a bad name anyhow.
 
 Copyright (C) 2012 Tim McCormack
 
-Distributed under the Eclipse Public License, the same as Clojure.
+Distributed under the Eclipse Public License v1.0, the same as Clojure.
+License text is provided in `./epl-v1.0.txt`.
