@@ -1,4 +1,4 @@
-(ns lein-jit.loader
+(ns lein-otf.loader
   "Loader to be added to projects as a sacrifice to the AOT gods."
   (:require clojure.main)
   (:import (java.net URL JarURLConnection)
@@ -11,7 +11,7 @@ is easy to accidentally pick up a MANIFEST.MF out of some other jar on the
 class path if you use .getResourceAsStream."
   []
   (-> ^Class (class get-manifest) ;; get a class file definitely in *this* jar
-      ^URL (.getResource "/lein_jit/loader.class") ;; any resource will do
+      ^URL (.getResource "/lein_otf/loader.class") ;; any resource will do
       ^JarURLConnection (.openConnection)
       (.getManifest)))
 
@@ -21,7 +21,7 @@ class path if you use .getResourceAsStream."
   (let [manifest (get-manifest)]
     (-> manifest
         ^Attributes (.getMainAttributes)
-        (.getValue "lein-jit-real-main"))))
+        (.getValue "lein-otf-real-main"))))
 
 (defn -main
   "Loader entrance point; just relays the call on to the real -main."
