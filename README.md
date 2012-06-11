@@ -7,24 +7,26 @@ executable. Since AOT compilation is infectious (or "transitive"), most or all
 of the jar is also AOT'd, along with any linked libraries. This reduces
 portability.
 
-lein-otf works by injecting a sacrificial loader class that is AOT compiled.
-This class inspects the jar's manifest file for an attribute (injected when the
-jar was created) bearing the name of the :main namespace, and calls
-clojure.main/main -m with that namespace. Because the loader is not statically
-linked against the rest of your codebase, the AOT compilation is restricted
-to the loader and any namespaces asking for gen-class (and anything they link
-against, of course.)
+lein-otf works by injecting a sacrificial Java loader class.  This class
+inspects the JAR's manifest file for an attribute (injected when the JAR was
+created) bearing the name of the `:main` namespace then calls that namespace's
+`-main` function.  Because the loader is not statically linked against the rest
+of your codebase, AOT compilation is restricted to namespaces explicitly
+mentioned in `:aot` (and anything they link against, of course.)
 
 ## Usage
 
-Compatible with projects using Clojure 1.2.x and 1.3.0.
+Compatible with projects using Clojure 1.2.x and 1.3.0.  Requires Leiningen 2.0
+or greater (including preview versions).
 
-1. Specify the plugin as a development dependency:
-   `:dev-dependencies [[org.timmc/lein-otf "1.1.0"]]`
-2. Take :gen-class out of your main namespace, but leave project.clj's :main
-   pointing to it. **NB**: Assumes main function is called `-main`.
-3. Get the plugin and use it!
-   `$ lein uberjar-otf`
+1. Specify the plugin as a plugin: 
+   `:plugins [[org.timmc/lein-otf "2.0.0-SNAPSHOT"]]`
+2. Add the hooks to your hooks: 
+   `:hooks [lein-otf.hooks]`
+3. Take `:gen-class` out of your main namespace, but leave project.clj's
+   `:main` pointing to it. **NB**: Assumes main function is called `-main`.
+4. Run the `uberjar` task, or anything else which invokes it:
+   `$ lein uberjar`
 
 ## Changelog
 
@@ -39,11 +41,13 @@ after release and had a bad name anyhow.
 
 * Extends support back to projects using Clojure v1.2.0.
 
+### v2.0.0
+
+* Support/require Leiningen 2.0.  Switch to hook-based invocation.
+
 ## License
 
-Copyright (C) 2012 Tim McCormack
-
-Contains material from `org.clojure/clojure` project v1.3.0.
+Copyright (C) 2012 Tim McCormack & Marshall Vandegrift
 
 Distributed under the Eclipse Public License v1.0, the same as Clojure.
 License text is provided in `./epl-v1.0.txt`.
