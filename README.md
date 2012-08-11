@@ -20,7 +20,7 @@ Compatible with projects using Clojure 1.2.x and 1.3.0.  Requires Leiningen 2.0
 or greater (including preview versions).
 
 1. Specify the plugin as a plugin: 
-   `:plugins [[org.timmc/lein-otf "2.0.0-SNAPSHOT"]]`
+   `:plugins [[org.clojars.llasram/lein-otf "2.0.0-SNAPSHOT"]]`
 2. Add the hooks to your hooks: 
    `:hooks [lein-otf.hooks]`
 3. Take `:gen-class` out of your main namespace, but leave project.clj's
@@ -33,17 +33,17 @@ or greater (including preview versions).
 Please ignore [org.timmc/lein-jit "0.0.1"], which mysteriously stopped working
 after release and had a bad name anyhow.
 
-### v1.0.0
+### v2.0.0
 
-* Provides `lein uberjar-otf` command. Works on Clojure v1.3.0.
+* Support/require Leiningen 2.0.  Switch to hook-based invocation.
 
 ### v1.1.0
 
 * Extends support back to projects using Clojure v1.2.0.
 
-### v2.0.0
+### v1.0.0
 
-* Support/require Leiningen 2.0.  Switch to hook-based invocation.
+* Provides `lein uberjar-otf` command. Works on Clojure v1.3.0.
 
 ## License
 
