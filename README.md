@@ -16,11 +16,11 @@ mentioned in `:aot` (and anything they link against, of course.)
 
 ## Usage
 
-Compatible with projects using Clojure 1.2.x and 1.3.0.  Requires Leiningen 2.0
+Compatible with projects using Clojure 1.3.0 and 1.4.0.  Requires Leiningen 2.0
 or greater (including preview versions).
 
 1. Specify the plugin as a plugin: 
-   `:plugins [[org.clojars.llasram/lein-otf "2.0.0-SNAPSHOT"]]`
+   `:plugins [[org.clojars.llasram/lein-otf "2.0.0"]]`
 2. Add the hooks to your hooks: 
    `:hooks [lein-otf.hooks]`
 3. Take `:gen-class` out of your main namespace, but leave project.clj's
