@@ -23,15 +23,13 @@ or greater (including preview versions).
    `:plugins [[org.clojars.llasram/lein-otf "2.0.0"]]`
 2. Add the hooks to your hooks: 
    `:hooks [lein-otf.hooks]`
-3. Take `:gen-class` out of your main namespace, but leave project.clj's
-   `:main` pointing to it. **NB**: Assumes main function is called `-main`.
+3. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
+   pointing to it, but add `^:skip-aot` metadata on the namespace
+   symbol. **NB**: Assumes main function is called `-main`.
 4. Run the `uberjar` task, or anything else which invokes it:
    `$ lein uberjar`
 
 ## Changelog
-
-Please ignore [org.timmc/lein-jit "0.0.1"], which mysteriously stopped working
-after release and had a bad name anyhow.
 
 ### v2.0.0
 
