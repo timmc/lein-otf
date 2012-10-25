@@ -29,5 +29,6 @@ manifest field. The lein-otf loader should already be present as a dependency."
 (defn middleware
   "Middleware to inject lein-otf.loader as a dependency."
   [project]
-  (update-in project [:dependencies] conj
-             `[org.clojars.llasram/lein-otf.loader "1.0.0"]))
+  (-> (update-in project [:dependencies] concat
+                 `[[org.clojars.llasram/lein-otf.loader "1.0.0"]])
+      (update-in ,,,,,,, [:aliases] assoc "uberjar-otf" "uberjar")))
