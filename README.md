@@ -10,9 +10,10 @@ portability.
 lein-otf works by injecting a sacrificial Java loader class.  This class
 inspects the JAR's manifest file for an attribute (injected when the JAR was
 created) bearing the name of the `:main` namespace then calls that namespace's
-`-main` function.  Because the loader is not statically linked against the rest
-of your codebase, AOT compilation is restricted to namespaces explicitly
-mentioned in `:aot` (and anything they link against, of course.)
+`-main` (or other explicitly named) function.  Because the loader is not
+statically linked against the rest of your codebase, AOT compilation is
+restricted to namespaces explicitly mentioned in `:aot` (and anything they link
+against, of course.)
 
 ## Usage
 
@@ -20,16 +21,19 @@ Compatible with projects using Clojure 1.3.0 and 1.4.0.  Requires Leiningen 2.0
 or greater (including preview versions).
 
 1. Specify the plugin as a plugin: 
-   `:plugins [[org.clojars.llasram/lein-otf "2.0.0"]]`
-2. Add the hooks to your hooks: 
-   `:hooks [lein-otf.hooks]`
-3. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
-   pointing to it, but add `^:skip-aot` metadata on the namespace
-   symbol. **NB**: Assumes main function is called `-main`.
-4. Run the `uberjar` task, or anything else which invokes it:
+   `:plugins [[org.clojars.llasram/lein-otf "2.1.0"]]`
+2. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
+   pointing to it, but add `^:skip-aot` metadata on the namespace symbol.
+3. Run the `uberjar` task, or anything else which invokes it:
    `$ lein uberjar`
 
 ## Changelog
+
+### v2.1.0
+
+* Switch to implementation using separated loader stub dependency and Leiningen
+  2 automatic hooks and middleware.  Explicit `:hooks` entry no longer
+  necessary.  Restore (deprecated) `uberjar-otf` task as alias for `uberjar`.
 
 ### v2.0.0
 
