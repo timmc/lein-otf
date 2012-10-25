@@ -1,8 +1,10 @@
-pom.xml
-*jar
+/pom.xml
+/*jar
 /lib/
 /classes/
 /target/
 /lein-otf.loader/target/
 .lein-failures
 .lein-deps-sum
+/.lein-plugins/
+/target/
