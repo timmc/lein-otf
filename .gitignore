@@ -2,7 +2,11 @@
 /*jar
 /lib/
 /classes/
-/.lein-failures
-/.lein-deps-sum
+/target/
+.lein-failures
+.lein-deps-sum
 /.lein-plugins/
 /target/
+/lein-otf.loader/pom.xml
+/lein-otf.loader/target/
+/lein-otf.loader/.lein-plugins/
