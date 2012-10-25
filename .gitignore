@@ -3,8 +3,10 @@
 /lib/
 /classes/
 /target/
-/lein-otf.loader/target/
 .lein-failures
 .lein-deps-sum
 /.lein-plugins/
 /target/
+/lein-otf.loader/pom.xml
+/lein-otf.loader/target/
+/lein-otf.loader/.lein-plugins/
