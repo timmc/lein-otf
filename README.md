@@ -17,10 +17,10 @@ against, of course.)
 
 ## Usage
 
-Compatible with projects using Clojure 1.2.x and 1.3.0.
+Compatible with Leiningen 1.x projects using Clojure 1.2.x and 1.3.0.
 
 1. Specify the plugin as a development dependency:
-   `:dev-dependencies [[org.timmc/lein-otf "1.1.0"]]`
+   `:dev-dependencies [[org.timmc/lein-otf "1.2.0"]]`
 2. Take :gen-class out of your main namespace, but leave project.clj's :main
    pointing to it. **NB**: Assumes main function is called `-main`.
 3. Get the plugin and use it!
@@ -38,6 +38,11 @@ after release and had a bad name anyhow.
 ### v1.1.0
 
 * Extends support back to projects using Clojure v1.2.0.
+
+### v1.2.0
+
+* Warns on missing :main
+* Likely the last minor release on 1.x branch.
 
 ## License
 

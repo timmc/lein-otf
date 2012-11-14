@@ -1,4 +1,4 @@
-(defproject org.timmc/lein-otf "1.1.0"
+(defproject org.timmc/lein-otf "1.2.0"
   :url "https://github.com/timmc/lein-otf"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
