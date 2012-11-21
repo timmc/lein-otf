@@ -1,4 +1,4 @@
-(defproject org.clojars.llasram/lein-otf.loader "1.0.1-SNAPSHOT"
+(defproject org.clojars.llasram/lein-otf.loader "1.1.0"
   :url "https://github.com/llasram/lein-otf"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
