@@ -21,13 +21,17 @@ Compatible with projects using Clojure 1.3.0 and 1.4.0.  Requires Leiningen 2.0
 or greater (including preview versions).
 
 1. Specify the plugin as a plugin: 
-   `:plugins [[org.clojars.llasram/lein-otf "2.1.1"]]`
+   `:plugins [[org.clojars.llasram/lein-otf "2.1.2"]]`
 2. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
    pointing to it, but add `^:skip-aot` metadata on the namespace symbol.
 3. Run the `uberjar` task, or anything else which invokes it:
    `$ lein uberjar`
 
 ## Changelog
+
+### v2.1.2
+
+* Bugfix for Stub class visibility.
 
 ### v2.1.1
 

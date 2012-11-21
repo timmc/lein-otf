@@ -4,7 +4,7 @@ import clojure.lang.RT;
 import clojure.lang.Symbol;
 import clojure.lang.ArraySeq;
 
-class Stub {
+public class Stub {
 
 private static String NS = "lein-otf.loader";
 
