@@ -29,20 +29,35 @@ or greater (including preview versions).
 
 ## Changelog
 
+### v1.0.0
+
+* Provides `lein uberjar-otf` command. Works on Clojure v1.3.0.
+
+### v1.1.0
+
+* Extends support back to projects using Clojure v1.2.0.
+
+### v1.2.0
+
+* Warns on missing :main
+* Likely the last minor release on 1.x branch.
+
+### v1.2.1
+
+* Major bugfix: Was always rejecting :main in target project.
+
+### v1.3.0
+
+* Allow :main to have a var name as well, e.g. `foo.core/alt-main`. If
+  :main does not contain a slash, var name defaults to `-main`. This gives
+  parity with Leiningen itself.
+
 ### v2.1.0
 
 * Support and require Leiningen 2.0.  Switch to implementation using separated
   loader stub dependency and Leiningen 2 automatic hooks and middleware.  No
   `:hooks` entry is necessary.  Support (deprecated) `uberjar-otf` task as
   alias for `uberjar`.
-
-### v1.1.0
-
-* Extends support back to projects using Clojure v1.2.0.
-
-### v1.0.0
-
-* Provides `lein uberjar-otf` command. Works on Clojure v1.3.0.
 
 ## License
 
