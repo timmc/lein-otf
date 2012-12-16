@@ -44,6 +44,10 @@ after release and had a bad name anyhow.
 * Warns on missing :main
 * Likely the last minor release on 1.x branch.
 
+### v1.2.1
+
+* Major bugfix: Was always rejecting :main in target project.
+
 ## License
 
 Copyright (C) 2012 Tim McCormack

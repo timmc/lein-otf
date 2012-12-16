@@ -5,7 +5,7 @@
   "Put in a loader namespace for :main and put the real main namespace in a
 manifest field. The lein-otf loader should already be present as a dependency."
   [project]
-  (let [real (:main project)]
+  (if-let [real (:main project)]
     (-> project
         (assoc-in [:main] 'lein-otf.loader)
         (update-in [:aot] (fnil #(conj % 'lein-otf.loader) []))
