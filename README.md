@@ -2,17 +2,23 @@
 
 Leiningen plugin to produce OTF-compiled uberjars. (OTF = on-the-fly)
 
-An uberjar's main class must be AOT-compiled for the jar to work as an
-executable. Since AOT compilation is infectious (or "transitive"), most or all
-of the jar is also AOT'd, along with any linked libraries. This reduces
-portability.
+## The problem
+
+An uberjar's main class must be compiled ahead of time ("AOT") for
+the jar to work as an executable. Since AOT compilation is infectious
+(or "transitive"), most or all of the jar is also AOT'd, along with
+any linked libraries. This reduces portability.
+
+## The solution
 
 lein-otf works by injecting a sacrificial Java loader class.  This class
-inspects the JAR's manifest file for an attribute (injected when the JAR was
-created) bearing the name of the `:main` namespace then calls that namespace's
-`-main` (or other explicitly named) function.  Because the loader is not
-statically linked against the rest of your codebase, AOT compilation is
-restricted to namespaces explicitly mentioned in `:aot` (and anything they link
+inspects the JAR's manifest file for the `lein-otf-real-main` attribute
+(injected when the JAR was created), which bears the name of the
+`:main` namespace or var that was specified in the dependent project.
+The loader stub then calls that namespace's `-main` (or other explicitly
+named) function.  Because the loader is not statically linked against
+the rest of your codebase, AOT compilation is restricted to
+namespaces explicitly mentioned in `:aot` (and anything they link
 against, of course.)
 
 ## Usage
@@ -21,11 +27,14 @@ Compatible with projects using Clojure 1.3.0 and 1.4.0.  Requires Leiningen 2.0
 or greater (including preview versions).
 
 1. Specify the plugin as a plugin:
-   `:plugins [[org.timmc/lein-otf "2.1.0"]]`
+   `:plugins [[org.timmc/lein-otf "2.0.0"]]`
 2. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
    pointing to it, but add `^:skip-aot` metadata on the namespace symbol.
 3. Run the `uberjar` task, or anything else which invokes it:
    `$ lein uberjar`
+
+As with Leiningen itself, lein-otf assumes that the main fn is called `-main`
+unless it is explicitly specified, e.g. `foo.core/alt-main`.
 
 ## Changelog
 
