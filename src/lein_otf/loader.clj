@@ -5,7 +5,7 @@
            (java.util.jar Manifest Attributes))
   (:gen-class))
 
-(defn- ^Manifest get-manifest
+(defn ^Manifest get-manifest
   "Retrieve the manifest out of the current JAR file. This is tricky, since it
 is easy to accidentally pick up a MANIFEST.MF out of some other jar on the
 class path if you use .getResourceAsStream."
@@ -15,19 +15,32 @@ class path if you use .getResourceAsStream."
       ^JarURLConnection (.openConnection)
       (.getManifest)))
 
-(defn- get-real
-  "Get the real namespace from a custom attribute on the jar manifest."
+(defn interpret-real-main
+  "Given the lein-otf-real-main manifest value, produce a coll of the
+namespace and main symbols for the real main fn."
+  [^String val]
+  (let [main-parts (.split val "/")]
+    (if (< 2 (count main-parts))
+     (throw (RuntimeException.
+             (format "lein-otf-real-main has too many slashes: %s" val)))
+     (map symbol (take 2 (concat main-parts ["-main"]))))))
+
+(defn get-main-spec
+  "Get the spec for the real main fn (as string) from a custom attribute on the
+jar manifest. Throws if misisng."
   []
   {:post [(string? %)]}
-  (let [manifest (get-manifest)]
-    (-> manifest
-        ^Attributes (.getMainAttributes)
-        (.getValue "lein-otf-real-main"))))
+  (if-let [main (-> (get-manifest)
+                    ^Attributes (.getMainAttributes)
+                    (.getValue "lein-otf-real-main"))]
+    main
+    (throw (RuntimeException.
+            "Missing 'lein-otf-real-main' manifest attribute."))))
 
 (defn -main
-  "Loader entrance point; just relays the call on to the real -main."
+  "Loader entrance point; just relays the call on to the real main fn."
   [& args]
-  (let [real-ns (get-real)]
-    ;; clojure.main does not have the -m option in Clojure 1.2, so this is
-    ;; taken directly from the 1.3 clojure.main
-    (apply (ns-resolve (doto (symbol real-ns) (require)) '-main) args)))
+  (let [[main-ns main-name] (interpret-real-main (get-main-spec))]
+    (require main-ns)
+    (let [main-var (ns-resolve main-ns main-name)]
+      (apply main-var args))))
