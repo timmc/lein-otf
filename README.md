@@ -20,9 +20,10 @@ against, of course.)
 Compatible with Leiningen 1.x projects using Clojure 1.2.x and 1.3.0.
 
 1. Specify the plugin as a development dependency:
-   `:dev-dependencies [[org.timmc/lein-otf "1.2.0"]]`
+   `:dev-dependencies [[org.timmc/lein-otf "1.3.0"]]`
 2. Take :gen-class out of your main namespace, but leave project.clj's :main
-   pointing to it. **NB**: Assumes main function is called `-main`.
+   pointing to it. Main var's name defaults to `-main`, although :main
+   can specify an alternate like so: `:main foo.core/alt-main`.
 3. Get the plugin and use it!
    `$ lein uberjar-otf`
 
@@ -47,6 +48,12 @@ after release and had a bad name anyhow.
 ### v1.2.1
 
 * Major bugfix: Was always rejecting :main in target project.
+
+### v1.3.0
+
+* Allow :main to have a var name as well, e.g. `foo.core/alt-main`. If
+  :main does not contain a slash, var name defaults to `-main`. This gives
+  parity with Leiningen itself.
 
 ## License
 
