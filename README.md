@@ -61,7 +61,7 @@ unless it is explicitly specified, e.g. `foo.core/alt-main`.
   :main does not contain a slash, var name defaults to `-main`. This gives
   parity with Leiningen itself.
 
-### v2.1.0
+### v2.0.0
 
 * Support and require Leiningen 2.0.  Switch to implementation using separated
   loader stub dependency and Leiningen 2 automatic hooks and middleware.  No
