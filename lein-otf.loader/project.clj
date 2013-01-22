@@ -3,6 +3,7 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :description "Loader stub for non-AOT Clojure uberjars"
+  :dependencies [[org.clojure/clojure "1.4.0"]]
   :java-source-paths ["src/java"]
   :source-paths []
 
