@@ -27,7 +27,7 @@ Compatible with projects using Clojure 1.3.0 and 1.4.0.  Requires Leiningen 2.0
 or greater (including preview versions).
 
 1. Specify the plugin as a plugin:
-   `:plugins [[org.timmc/lein-otf "2.0.0"]]`
+   `:plugins [[org.timmc/lein-otf "2.0.1"]]`
 2. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
    pointing to it, but add `^:skip-aot` metadata on the namespace symbol.
 3. Run the `uberjar` task, or anything else which invokes it:
@@ -68,9 +68,13 @@ unless it is explicitly specified, e.g. `foo.core/alt-main`.
   `:hooks` entry is necessary.  Support (deprecated) `uberjar-otf` task as
   alias for `uberjar`.
 
+### v2.0.1
+
+* No source change. Depend on lein-otf.loader v1.0.1 (patch version bump.)
+
 ## License
 
-Copyright (C) 2012 Tim McCormack & Marshall Vandegrift
+Copyright (C) 2012–2013 Tim McCormack & Marshall Vandegrift
 
 Distributed under the Eclipse Public License v1.0, the same as Clojure.
 License text is provided in `./epl-v1.0.txt`.

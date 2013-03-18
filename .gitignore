@@ -1,3 +1,5 @@
 /pom.xml
+/*.asc
 /*.jar
 /target/
+/.lein-*

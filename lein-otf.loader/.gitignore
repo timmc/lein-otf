@@ -1,3 +1,7 @@
 /pom.xml
+/*.asc
 /*.jar
 /target/
+/lib/
+/classes/
+/.lein-*

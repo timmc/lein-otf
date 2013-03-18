@@ -18,3 +18,7 @@ Buildable with Leiningen 1.x or 2.x, although the latter is recommended.
 * First release
 * Uses lein-otf-real-main attribute in manifest.mf
 * Accepts either `foo.core` or `foo.core/alt-main` format.
+
+### v1.0.1
+
+* No source change: Corrected project.clj deps to include Clojure.

@@ -32,5 +32,5 @@ manifest field. The lein-otf loader should already be present as a dependency."
   "Middleware to inject lein-otf.loader as a dependency."
   [project]
   (-> project
-      (update-in [:dependencies] conj ['org.timmc/lein-otf.loader "1.0.0"])
+      (update-in [:dependencies] conj ['org.timmc/lein-otf.loader "1.0.1"])
       (update-in [:aliases] assoc "uberjar-otf" "uberjar")))
