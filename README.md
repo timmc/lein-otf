@@ -29,7 +29,8 @@ or greater (including preview versions).
 1. Specify the plugin as a plugin:
    `:plugins [[org.timmc/lein-otf "2.0.1"]]`
 2. Take `:gen-class` out of your main namespace.  Leave project.clj's `:main`
-   pointing to it, but add `^:skip-aot` metadata on the namespace symbol.
+   pointing to it, but add `^:skip-aot` metadata on the namespace symbol. For
+   example: `:main ^:skip-aot foo.core`
 3. Run the `uberjar` task, or anything else which invokes it:
    `$ lein uberjar`
 
