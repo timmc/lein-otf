@@ -2,6 +2,11 @@
 
 Leiningen plugin to produce OTF-compiled uberjars. (OTF = on-the-fly)
 
+**Note: lein-otf is broken with recent Leiningen, perhaps the 2.3.x–2.4.x series.**
+I'm not sure why, but I think it has to do with the dependency injection.
+I'm not particularly invested in fixing this, partly because lein-otf barely
+even deserves to be a plugin. Patches welcome, though.
+
 ## The problem
 
 An uberjar's main class must be compiled ahead of time ("AOT") for
