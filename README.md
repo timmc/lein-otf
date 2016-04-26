@@ -35,6 +35,9 @@ and in your project.clj:
   :main foo.bar.launcher
 ```
 
+Finally, remove `:gen-class` from `foo.bar.routes`, you don't need it
+anymore.
+
 This is more or less what lein-otf does for you anyway! The launcher
 namespace (and Clojure) will still be AOT-compiled, but nothing else
 will be (unless you specify otherwise).
