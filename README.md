@@ -2,10 +2,51 @@
 
 Leiningen plugin to produce OTF-compiled uberjars. (OTF = on-the-fly)
 
-**Note: lein-otf is broken with recent Leiningen, perhaps the 2.3.x–2.4.x series.**
-I'm not sure why, but I think it has to do with the dependency injection.
-I'm not particularly invested in fixing this, partly because lein-otf barely
-even deserves to be a plugin. Patches welcome, though.
+## NOTICE: Broken
+
+**Note: lein-otf is broken with recent Leiningen, perhaps the
+2.3.x–2.4.x series.**
+
+I'm not sure why, but I think it has to do with the dependency
+injection.  I'm not particularly invested in fixing this, partly
+because lein-otf barely even deserves to be a plugin. Patches welcome,
+though.
+
+### Do this instead
+
+Assuming your main ns is `foo.bar.routes`, create `foo.bar.launcher`
+like so:
+
+```clojure
+(ns foo.bar.launcher
+  "AOT-prevention dynamic loader stub for `foo.bar.routes`.")
+
+(defn -main
+  "Chain to routes.clj"
+  [& args]
+  (let [main-ns 'foo.bar.routes]
+    (require main-ns)
+    (apply (ns-resolve main-ns '-main) args)))
+```
+
+and in your project.clj:
+
+```clojure
+  :main foo.bar.launcher
+```
+
+This is more or less what lein-otf does for you anyway! The launcher
+namespace (and Clojure) will still be AOT-compiled, but nothing else
+will be (unless you specify otherwise).
+
+If you want your REPL to start in the real main namespace, add
+something like this to your project.clj:
+
+```clojure
+  :repl-options {:init-ns foo.bar.routes}
+```
+
+And that's it!
 
 ## The problem
 
