@@ -19,7 +19,8 @@ like so:
 
 ```clojure
 (ns foo.bar.launcher
-  "AOT-prevention dynamic loader stub for `foo.bar.routes`.")
+  "AOT-prevention dynamic loader stub for `foo.bar.routes`."
+  (:gen-class))
 
 (defn -main
   "Chain to routes.clj"
@@ -33,6 +34,7 @@ and in your project.clj:
 
 ```clojure
   :main foo.bar.launcher
+  :aot [foo.bar.launcher]
 ```
 
 Finally, remove `:gen-class` from `foo.bar.routes`, you don't need it
